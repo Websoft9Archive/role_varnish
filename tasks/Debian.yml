@@ -1,0 +1,7 @@
+- name: Import varnish repo
+  shell: curl -s https://packagecloud.io/install/repositories/varnishcache/varnish{{varnish_version_regex}}/script.deb.sh | sudo bash
+
+- name: Install varnish
+  apt: 
+    name: varnish
+    update_cache: yes

@@ -1,0 +1,3 @@
+- name: check_varnish_service
+  debug:
+    var: check_varnish_service.stdout

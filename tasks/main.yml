@@ -1,4 +1,24 @@
+# e.g 6.0 to 60
+- set_fact:
+    varnish_version_regex: "{{ varnish_version | regex_replace('^(?P<before>.+).(?P<after>\\d+)$', '\\g<before>\\g<after>')}}"
+
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
+
+- name: Start and Enable varnish 
+  service: 
+    name: varnish
+    state: restarted
+    enabled: yes
+
+# check varnish version and service
+- block:
+  - name: Check varnish Service
+    shell: systemctl status varnish | grep Active*
+    register: check_varnish_service
+    notify: check_varnish_service
+
+  - name: Check varnish Version
+    shell: sudo echo $(varnishd -V) |sudo tee -a /data/logs/install_version.txt
 
 

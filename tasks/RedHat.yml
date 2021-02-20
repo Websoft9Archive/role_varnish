@@ -1,0 +1,8 @@
+- name: Import varnish repo
+  shell: curl -s https://packagecloud.io/install/repositories/varnishcache/varnish{{varnish_version_regex}}/script.rpm.sh | sudo bash
+
+- name: Install varnish
+  yum: 
+    name: varnish
+    update_cache: yes
+
