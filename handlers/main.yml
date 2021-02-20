@@ -1,3 +1,7 @@
 - name: check_varnish_service
   debug:
     var: check_varnish_service.stdout
+
+- name: check_varnishncsa_service
+  debug:
+    var: check_varnishncsa_service.stdout

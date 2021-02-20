@@ -7,9 +7,11 @@
 
 - name: Start and Enable varnish 
   service: 
-    name: varnish
+    name: '{{item}}'
     state: restarted
     enabled: yes
+  - varnishncsa
+  - varnish
 
 # check varnish version and service
 - block:
@@ -17,6 +19,11 @@
     shell: systemctl status varnish | grep Active*
     register: check_varnish_service
     notify: check_varnish_service
+
+  - name: Check varnishncsa Service
+    shell: systemctl status varnishncsa | grep Active*
+    register: check_varnishncsa_service
+    notify: check_varnishncsa_service
 
   - name: Check varnish Version
     shell: sudo echo $(varnishd -V) |sudo tee -a /data/logs/install_version.txt
