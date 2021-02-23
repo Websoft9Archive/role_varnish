@@ -10,8 +10,8 @@
     name: '{{item}}'
     state: restarted
     enabled: yes
-  - varnishncsa
-  - varnish
+      - varnishncsa
+      - varnish
 
 # check varnish version and service
 - block:
