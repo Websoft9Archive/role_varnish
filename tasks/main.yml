@@ -5,13 +5,17 @@
 - name: Install this role on {{ansible_os_family}}
   include: "{{ansible_os_family}}.yml"
 
-- name: Start and Enable varnish 
-  service: 
-    name: '{{item}}'
+- name: Start and Enable varnish
+  service:
+    name: varnish
     state: restarted
     enabled: yes
-      - varnishncsa
-      - varnish
+
+- name: Start and Enable varnishncsa
+  service:
+    name: varnishncsa
+    state: restarted
+    enabled: yes
 
 # check varnish version and service
 - block:
