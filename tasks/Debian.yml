@@ -1,4 +1,4 @@
-- name: Import varnish repo for ubuntu18.04(not support ubuntu20.04)
+- name: Import varnish repo for ubuntu20.04
   shell: curl -s https://packagecloud.io/install/repositories/varnishcache/varnish{{varnish_version_regex}}/script.deb.sh | sudo bash
 
 - name: Install varnish
