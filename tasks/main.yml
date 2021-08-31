@@ -30,6 +30,6 @@
     notify: check_varnishncsa_service
 
   - name: Check varnish Version
-    shell: sudo echo $(varnishd -V) |sudo tee -a /data/logs/install_version.txt
+    shell: sudo echo "varnish version:" `unbuffer varnishd -V | sed -n '1p' | awk -F "-" '{print $2}' | awk '{print $1}'` | sudo tee -a /data/logs/install_version.txt
 
 
